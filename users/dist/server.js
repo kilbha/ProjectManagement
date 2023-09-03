@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const db_1 = __importDefault(require("./utils/db"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3001;
 app.use(express_1.default.json());
@@ -20,9 +23,10 @@ const startServer = () => {
         });
     });
 };
+(0, db_1.default)();
 startServer()
-    .then((server) => {
-    console.log(`Server is running successfully on port ${PORT}`);
+    .then(() => {
+    console.log(`users microservice is running successfully on port ${PORT}`);
 })
     .catch((err) => {
     console.log(`Error starting server ${err.message}`);

@@ -1,5 +1,9 @@
 import express, { Request, Response } from "express";
 import userRouter from "./routes/userRoute";
+import dotenv from "dotenv";
+import connectDB from "./utils/db";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -19,9 +23,11 @@ const startServer = () => {
   });
 };
 
+connectDB();
+
 startServer()
-  .then((server) => {
-    console.log(`Server is running successfully on port ${PORT}`);
+  .then(() => {
+    console.log(`users microservice is running successfully on port ${PORT}`);
   })
   .catch((err) => {
     console.log(`Error starting server ${err.message}`);
