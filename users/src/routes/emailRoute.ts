@@ -10,6 +10,8 @@ router.post(
     body("toEmail").notEmpty().withMessage("Please provide EmailId"),
     body("subject").notEmpty().withMessage("Please provide subject of email"),
     body("html").notEmpty().withMessage("Please provide body of email"),
+    body("exp").notEmpty().withMessage("Please provide expiry of token"),
+    body("role").notEmpty().withMessage("Please provide role of user"),
   ],
   userController.send_signup_email
 );

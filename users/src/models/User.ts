@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-  firstname: {
+  firstName: {
     type: String,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
   },
@@ -13,22 +13,34 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  phonenumber: {
+  phoneNumber: {
     type: String,
     required: true,
   },
   status: {
     type: Boolean,
-    required: true,
     default: false,
   },
-  Role: {
+  role: {
     type: String,
     required: true,
     default: "Member",
   },
-  Designation: {
+  designation: {
+    type: String,
+  },
+  orgName: {
     type: String,
     required: true,
+  },
+  addedOn: {
+    type: String,
+    required: true,
+    default: new Date().toUTCString(),
+  },
+  timezoneOffset: {
+    type: Number,
+    required: true,
+    default: new Date().getTimezoneOffset() / -60,
   },
 });

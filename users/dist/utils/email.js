@@ -1,0 +1,50 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const nodemailer_1 = __importDefault(require("nodemailer"));
+class emailService {
+    constructor() {
+        this.send_email = (to, html, subject) => __awaiter(this, void 0, void 0, function* () {
+            // Create a promise to wrap the sendMail callback
+            return new Promise((resolve, reject) => {
+                const transporter = nodemailer_1.default.createTransport({
+                    host: process.env.emailhost,
+                    port: 465,
+                    auth: {
+                        user: process.env.fromemail,
+                        pass: process.env.password,
+                    },
+                    secure: true,
+                });
+                const details = {
+                    html: html,
+                    from: process.env.fromemail,
+                    to: to,
+                    subject: subject,
+                };
+                transporter.sendMail(details, (error, info) => {
+                    if (error) {
+                        console.error("Error sending an email", error.message);
+                        reject(error); // Reject the promise with the error
+                    }
+                    else {
+                        console.log("Sent email successfully", info.messageId);
+                        resolve(info.messageId); // Resolve the promise with the messageId
+                    }
+                });
+            });
+        });
+    }
+}
+exports.default = emailService;

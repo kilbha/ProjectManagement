@@ -11,12 +11,15 @@ class emailController {
       if (!errors.isEmpty()) {
         res.status(400).json({ errors: errors.array() });
       } else {
-        const { toEmail, html, subject } = req.body;
+        const { toEmail, html, subject, role, exp } = req.body;
         let messageId = await this.emailservice.send_email(
           toEmail,
           html,
-          subject
+          subject,
+          role,
+          exp
         );
+
         if (messageId) {
           res
             .status(200)
