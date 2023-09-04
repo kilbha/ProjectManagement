@@ -13,5 +13,7 @@ router.post("/signup", [
     (0, express_validator_1.body)("toEmail").notEmpty().withMessage("Please provide EmailId"),
     (0, express_validator_1.body)("subject").notEmpty().withMessage("Please provide subject of email"),
     (0, express_validator_1.body)("html").notEmpty().withMessage("Please provide body of email"),
+    (0, express_validator_1.body)("exp").notEmpty().withMessage("Please provide expiry of token"),
+    (0, express_validator_1.body)("role").notEmpty().withMessage("Please provide role of user"),
 ], userController.send_signup_email);
 exports.default = router;

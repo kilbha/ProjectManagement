@@ -36,8 +36,7 @@ const startServer = () => {
 
 connectDB();
 
-startServer()
-  .then(() => {
+startServer()  .then(() => {
     console.log(`users microservice is running successfully on port ${PORT}`);
   })
   .catch((err) => {

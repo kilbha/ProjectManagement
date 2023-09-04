@@ -37,4 +37,14 @@ const UserSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
+    addedOn: {
+        type: String,
+        required: true,
+        default: new Date().toUTCString(),
+    },
+    timezoneOffset: {
+        type: Number,
+        required: true,
+        default: new Date().getTimezoneOffset() / -60,
+    },
 });

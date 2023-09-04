@@ -13,11 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer_1 = __importDefault(require("nodemailer"));
+const utils_1 = __importDefault(require("./utils"));
 class emailService {
     constructor() {
-        this.send_email = (to, html, subject) => __awaiter(this, void 0, void 0, function* () {
+        this.send_email = (to, html, subject, role, exp) => __awaiter(this, void 0, void 0, function* () {
             // Create a promise to wrap the sendMail callback
             return new Promise((resolve, reject) => {
+                var utilsInstance = new utils_1.default();
+                const token = utilsInstance.get_jwt_token(to, role, exp);
                 const transporter = nodemailer_1.default.createTransport({
                     host: process.env.emailhost,
                     port: 465,
@@ -28,7 +31,7 @@ class emailService {
                     secure: true,
                 });
                 const details = {
-                    html: html,
+                    html: `http://localhost:4200/signup?token=${token}`,
                     from: process.env.fromemail,
                     to: to,
                     subject: subject,

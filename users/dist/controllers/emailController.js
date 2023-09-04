@@ -24,8 +24,8 @@ class emailController {
                     res.status(400).json({ errors: errors.array() });
                 }
                 else {
-                    const { toEmail, html, subject } = req.body;
-                    let messageId = yield this.emailservice.send_email(toEmail, html, subject);
+                    const { toEmail, html, subject, role, exp } = req.body;
+                    let messageId = yield this.emailservice.send_email(toEmail, html, subject, role, exp);
                     if (messageId) {
                         res
                             .status(200)
