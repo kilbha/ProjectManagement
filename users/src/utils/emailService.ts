@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import Mail, { Address } from "nodemailer/lib/mailer";
-import utils from "./utils";
+import utils from "./utilsService";
 
 class emailService {
   send_email = async (

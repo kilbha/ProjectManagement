@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import emailService from "../utils/email";
+import emailService from "../utils/emailService";
 import { validationResult } from "express-validator";
 
 class emailController {

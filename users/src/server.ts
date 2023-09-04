@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import userRouter from "./routes/userRoute";
 import dotenv from "dotenv";
-import connectDB from "./utils/db";
+import connectDB from "./utils/dbService";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
@@ -36,7 +36,8 @@ const startServer = () => {
 
 connectDB();
 
-startServer()  .then(() => {
+startServer()
+  .then(() => {
     console.log(`users microservice is running successfully on port ${PORT}`);
   })
   .catch((err) => {

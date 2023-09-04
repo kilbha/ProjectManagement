@@ -1,7 +1,11 @@
 {
-    "cSpell.words": [
-        "emailservice",
-        "verifytoken"
-    ],
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "cSpell.words": [
+    "bson",
+    "emailservice",
+    "middlewares",
+    "properjson",
+    "userid",
+    "verifytoken"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
