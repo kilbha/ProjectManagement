@@ -20,6 +20,7 @@ class usercontroller {
     try {
       const { firstName, lastName, email, password, orgName } = req.body;
       const user = new User({ firstName, lastName, email, password, orgName });
+
       await user.save();
       res.status(201).json({ message: "user created", userid: user.id });
     } catch (error: any) {

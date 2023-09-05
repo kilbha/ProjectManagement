@@ -9,6 +9,9 @@ const UserSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
+    password: {
+        type: String,
+    },
     lastName: {
         type: String,
         required: true,
@@ -16,10 +19,10 @@ const UserSchema = new mongoose_1.default.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
     },
     phoneNumber: {
         type: String,
-        required: true,
     },
     status: {
         type: Boolean,
@@ -48,3 +51,5 @@ const UserSchema = new mongoose_1.default.Schema({
         default: new Date().getTimezoneOffset() / -60,
     },
 });
+const userModel = mongoose_1.default.model("users", UserSchema);
+exports.default = userModel;

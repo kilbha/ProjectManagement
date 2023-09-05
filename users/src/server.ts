@@ -43,3 +43,5 @@ startServer()
   .catch((err) => {
     console.log(`Error starting server ${err.message}`);
   });
+
+export default app;
